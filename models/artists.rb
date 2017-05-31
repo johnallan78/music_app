@@ -45,7 +45,7 @@ def self.all()
 end
 
 def self.delete_all()
-  sql = "DELETE FROM albums;"
+  sql = "DELETE FROM artists;"
   SqlRunner.run(sql)
 end
 
