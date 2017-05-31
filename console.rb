@@ -17,9 +17,15 @@ artist3 = Artist.new({
       'name' => 'Igor Stravinsky'
   })
 
+artist4 = Artist.new({
+      'name' => 'Paul Simon'
+  })
+
+
 artist1.save()
 artist2.save()
 artist3.save()
+artist4.save()
 
 
 album1 = Album.new({
@@ -40,9 +46,23 @@ album3 = Album.new({
       'artist_id' => artist3.id
   })
 
+album4 = Album.new({
+      'title' => 'Rhythm of the Saints',
+      'genre' => 'World Music',
+      'artist_id' => artist4.id
+  })
+
+album5 = Album.new({
+      'title' => 'Abbey Road',
+      'genre' => '60s Rock',
+      'artist_id' => artist1.id
+  })
+
 album1.save()
 album2.save()
 album3.save()
+album4.save()
+album5.save()
 
 album1.artist()
 artist1.album()

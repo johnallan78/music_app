@@ -29,6 +29,14 @@ def update()
     SqlRunner.run(sql)
   end
 
+def self.find(artist)
+  sql = "SELECT * FROM artists"
+  result = SqlRunner.run(sql)
+  artist_hash = result.first
+  artist = Artist.new(artist_hash)
+  return artist
+end
+
 def self.all()
   sql = "SELECT ALL FROM artists;"
   artists = SqlRunner.new(sql)

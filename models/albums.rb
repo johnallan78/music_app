@@ -32,6 +32,14 @@ class Album
 
   end
 
+  def self.find(album)
+    sql = "SELECT * FROM albums"
+    result = SqlRunner.run(sql)
+    album_hash = result.first
+    album = Artist.new(album_hash)
+    return album
+  end
+
   def self.all()
       sql = "SELECT * FROM albums ;"
       result = SqlRunner.run(sql)
