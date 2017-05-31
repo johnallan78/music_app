@@ -25,12 +25,12 @@ def update()
   end
 
   def delete()
-    sql = "DELETE FROM artists WHERE id = '#{@id}';"
+    sql = "DELETE FROM artists WHERE id = #{@id};"
     SqlRunner.run(sql)
   end
 
-def self.find(artist)
-  sql = "SELECT * FROM artists"
+def self.find(id)
+  sql = "SELECT * FROM artists WHERE id = #{id};"
   result = SqlRunner.run(sql)
   artist_hash = result.first
   artist = Artist.new(artist_hash)
@@ -38,8 +38,8 @@ def self.find(artist)
 end
 
 def self.all()
-  sql = "SELECT ALL FROM artists;"
-  artists = SqlRunner.new(sql)
+  sql = "SELECT * FROM artists;"
+  artists = SqlRunner.run(sql)
   return artists.map {|artist| Artist.new(artist)}
 
 end
