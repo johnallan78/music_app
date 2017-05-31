@@ -15,18 +15,25 @@ class Album
   end
 
   def save()
-    sql = "INSERT INTO albums (title, genre, artist_id) VALUES ('#{@title}', '#{@genre}', #{@artist_id}) RETURNING id "
+    sql = "INSERT INTO albums (title, genre, artist_id) VALUES ('#{@title}', '#{@genre}', #{@artist_id}) RETURNING id ;"
     result = SqlRunner.run(sql)
     @id = result[0]['id'].to_i 
   end
 
 
-  # def update()
+  def update()
+    sql = " UPDATE albums SET (title, genre, artist_id) = ('#{@title}', '#{@genre}', #{@artist_id}) WHERE id = #{@id};"
+    SqlRunner.run(sql)
+  end
 
-  # end
+  def delete ()
+    sql = "DELETE FROM albums WHERE id = '#{@id}';"
+    SqlRunner.run(sql)
+
+  end
 
   def self.all()
-      sql = "SELECT * FROM albums "
+      sql = "SELECT * FROM albums ;"
       result = SqlRunner.run(sql)
       return result.map { |order_result| Album.new(order_result)}
   end

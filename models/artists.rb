@@ -19,8 +19,18 @@ def save()
   @id = result[0]['id'].to_i
 end
 
+def update()
+  sql = "UPDATE artists SET (name) = ('#{@name}') WHERE id = #{@id};"
+  SqlRunner.run(sql)
+  end
+
+  def delete()
+    sql = "DELETE FROM artists WHERE id = '#{@id}';"
+    SqlRunner.run(sql)
+  end
+
 def self.all()
-  sql = "SELECT ALL FROM customers;"
+  sql = "SELECT ALL FROM artists;"
   artists = SqlRunner.new(sql)
   return artists.map {|artist| Artist.new(artist)}
 
@@ -35,6 +45,7 @@ def album()
   sql = "SELECT * FROM albums WHERE artist_id = #{id} ;"
   result = SqlRunner.run(sql)
   orders = result.map { |order| Album.new(order)}
+  return orders
 end
 
 
